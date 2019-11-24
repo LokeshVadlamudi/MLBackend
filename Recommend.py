@@ -1,9 +1,7 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 from flask_cors import CORS
-from flask_swagger_ui import get_swaggerui_blueprint
-import json
+# from flask_swagger_ui import get_swaggerui_blueprint
 import pymongo
-
 from pymongo import MongoClient
 from flask import jsonify
 import pandas as pd
@@ -18,7 +16,7 @@ cors = CORS(app)
 conf = {
     "mongo_url" : "mongodb+srv://lokv007:lokesh99@mongodb-2fhcm.mongodb.net/admin?ssl=true&ssl_cert_reqs=CERT_NONE",
     #"host_url": "http://lmp.nupursjsu.net"
-    "host": "http://localhost"
+    "host": "0.0.0.0"
 }
 
 @app.route('/v1/books/<string:Book_id>/recommendations', methods=['GET'])
@@ -55,5 +53,5 @@ def recommend_books(book_id):
 	return jsonify({'result' : output})
 
 if __name__ == '__main__':
-    app.run(host='18.218.64.73',port=8080)
+    app.run(host="0.0.0.0", port=81)
     # app.run(host=conf['host'], port=conf['port'], debug=True)
